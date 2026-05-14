@@ -22,8 +22,14 @@ def fetch_page(url):
     try:
         resp = requests.get(
             "https://api.scraperapi.com",
-            params={"api_key": SCRAPER_KEY, "url": url, "country_code": "in"},
-            timeout=60,
+            params={
+                "api_key": SCRAPER_KEY,
+                "url": url,
+                "country_code": "in",
+                "render": "true",      # enables JavaScript rendering — loads dynamic coupon data
+                "wait_for_selector": ".pdp-offers-couponCode",  # wait for coupon section
+            },
+            timeout=120,
         )
         log.info("Fetch status=%s length=%d", resp.status_code, len(resp.text))
         return resp.text if len(resp.text) > 1000 else None
