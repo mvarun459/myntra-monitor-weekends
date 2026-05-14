@@ -26,8 +26,7 @@ def fetch_page(url):
                 "api_key": SCRAPER_KEY,
                 "url": url,
                 "country_code": "in",
-                "render": "true",      # enables JavaScript rendering — loads dynamic coupon data
-                "wait_for_selector": ".pdp-offers-couponCode",  # wait for coupon section
+                "render": "true",
             },
             timeout=120,
         )
